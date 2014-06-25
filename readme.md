@@ -18,3 +18,11 @@ Real-Time linux
 + [A real-time preemption overview](http://lwn.net/Articles/146861/)
 
 	> [个人笔记](./a-realtime-preemption-overview.md)
+
++ [Attempted summary of "RT patch acceptance" thread](http://lwn.net/Articles/143323/)
+
++ [The future of realtime Linux](http://lwn.net/Articles/572740/)
+
+## Git repo
+
+> [http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git](http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git)
