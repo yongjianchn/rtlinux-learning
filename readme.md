@@ -9,6 +9,10 @@ Real-Time linux
 
 		> [个人笔记](./QA.md)
 
+	+ [HOWTO](https://rt.wiki.kernel.org/index.php/RT_PREEMPT_HOWTO)
+
+		> [个人笔记](./HOWTO.md)
+
 ## Related Articles
 
 + [A real-time preemption overview](http://lwn.net/Articles/146861/)
