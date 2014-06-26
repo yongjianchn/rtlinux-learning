@@ -4,7 +4,7 @@ Date: Fri, 02 Sep 2011 14:41:29 +0200
 
 Subject: printk: 'force_early_printk' boot param to help with debugging
 From: Peter Zijlstra <a.p.zijlstra@chello.nl>
-Date: Fri Sep 02 14:29:33 CEST 2011
+#Date: Fri Sep 02 14:29:33 CEST 2011
 
 Gives me an option to screw printk and actually see what the machine
 says.

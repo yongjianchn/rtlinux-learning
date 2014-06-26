@@ -4,7 +4,7 @@ Date: Fri, 02 Sep 2011 14:41:37 +0200
 
 Subject: sched: teach migrate_disable about atomic contexts
 From: Peter Zijlstra <a.p.zijlstra@chello.nl>
-Date: Fri Sep 02 14:29:27 CEST 2011
+#Date: Fri Sep 02 14:29:27 CEST 2011
 
  <NMI>  [<ffffffff812dafd8>] spin_bug+0x94/0xa8
  [<ffffffff812db07f>] do_raw_spin_lock+0x43/0xea
