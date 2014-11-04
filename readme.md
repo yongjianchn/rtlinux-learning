@@ -23,10 +23,12 @@ Real-Time linux
 
 + [The future of realtime Linux](http://lwn.net/Articles/572740/)
 
-## Git repo
+## Res
 
-> [http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git](http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git)
-> rt-tests测试工具下载: git clone git://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
+> [rt补丁下载](https://www.kernel.org/pub/linux/kernel/projects/rt/)  
+> [kernel下载](https://www.kernel.org/pub/linux/kernel/)  
+> rt-tests测试工具下载: git clone git://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git  
+> [http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git](http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git)  
 
 ## rt-app programming
 
