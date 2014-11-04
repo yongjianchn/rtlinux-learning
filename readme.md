@@ -4,14 +4,13 @@ Real-Time linux
 ## Official
 
 + [RTwiki](https://rt.wiki.kernel.org/index.php/Main_page)
-
 	+ [Frequently asked Questions](https://rt.wiki.kernel.org/index.php/Frequently_Asked_Questions)
-
-		> [个人笔记](./QA.md)
-
 	+ [HOWTO](https://rt.wiki.kernel.org/index.php/RT_PREEMPT_HOWTO)
 
-		> [个人笔记](./HOWTO.md)
+## My
+
++ [Q&A](./QA.md)
++ [如何配置安装、测试](./HOWTO.md)
 
 ## Related Articles
 
