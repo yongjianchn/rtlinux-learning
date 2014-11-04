@@ -56,10 +56,10 @@ make rpm-pkg -j4
 # You can found the rpm in ~/rpmbuld/RPMS/
 
 # 安装rpm包：
-rpm -ivh --force ~/rpmbuild/RPMS/kernel-xxx.rpm
+sudo rpm -ivh --force ~/rpmbuild/RPMS/kernel-xxx.rpm
 
 # 添加新的内核启动项
-new-kernel-pkg --mkinitrd --depmode --install $VERSION
+sudo new-kernel-pkg --mkinitrd --depmod --install $VERSION
 # NOTE: $VERSION 是刚编译的内核的版本
 # NOTE：可以通过“ls /lib/modules/”命令来列出所有的版本号（子文件夹的名称就是版本号）
 # NOTE：/lib/modules/$VERSION这个文件夹应该是存在的
