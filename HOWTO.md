@@ -61,7 +61,8 @@ rpm -ivh --force ~/rpmbuild/RPMS/kernel-xxx.rpm
 # 添加新的内核启动项
 new-kernel-pkg --mkinitrd --depmode --install $VERSION
 # NOTE: $VERSION 是刚编译的内核的版本
-# NOTE：可以通过“ls /lib/modules/”命令来列出所有的版本号，应当存在/lib/modules/$VERSION这个文件夹
+# NOTE：可以通过“ls /lib/modules/”命令来列出所有的版本号（子文件夹的名称就是版本号）
+# NOTE：/lib/modules/$VERSION这个文件夹应该是存在的
 
 # 重启
 sudo reboot # NOW you can use the new kernel
