@@ -58,17 +58,10 @@ make rpm-pkg -j4
 # 安装rpm包：
 rpm -ivh --force ~/rpmbuild/RPMS/kernel-xxx.rpm
 
-# 制作initrd
-# $version 是相应内核的版本， 应当存在/lib/modules/$version这个文件夹
-mkinitrd /boot/initrd-$version.img $version
-
-# 修改grub配置
-sudo vi /etc/grub2.cfg
-# 参考已有的menuentry添加一个新的entry, 修改其中的内核文件和initrd文件为编译和制作出的kernel和initrd
-# $kernel is /boot/vmlinuz-xxx  $initrd is /boot/initrd-xxx.img
-
-# 更新grub启动项
-sudo grub2-mkconfig
+# 添加新的内核启动项
+new-kernel-pkg --mkinitrd --depmode --install $VERSION
+# NOTE: $VERSION 是刚编译的内核的版本
+# NOTE：可以通过“ls /lib/modules/”命令来列出所有的版本号，应当存在/lib/modules/$VERSION这个文件夹
 
 # 重启
 sudo reboot # NOW you can use the new kernel
