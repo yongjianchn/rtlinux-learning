@@ -6,7 +6,7 @@
 
 * 登录此网站[projects-rt](https://www.kernel.org/pub/linux/kernel/projects/rt/)，寻找目标patch
 	* 如patch-3.10.58-rt62.patch.xz
-* 下载rt patch对应版本的kernel。[kernel代码下载](ttps://www.kernel.org/pub/linux/kernel/)
+* 下载rt patch对应版本的kernel。[kernel代码下载](https://www.kernel.org/pub/linux/kernel/)
 	* 如：linux-3.10.58.tar.xz
 * 解压并打补丁
 
