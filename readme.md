@@ -17,7 +17,7 @@ Real-Time linux
 
 + [A real-time preemption overview](http://lwn.net/Articles/146861/)
 
-	> [个人笔记](./a-realtime-preemption-overview.md)
+	> [个人笔记](./doc/a-realtime-preemption-overview.md)
 
 + [Attempted summary of "RT patch acceptance" thread](http://lwn.net/Articles/143323/)
 
@@ -26,3 +26,8 @@ Real-Time linux
 ## Git repo
 
 > [http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git](http://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git)
+> rt-tests测试工具下载: git clone git://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
+
+## rt-app programming
+
+> See ./example

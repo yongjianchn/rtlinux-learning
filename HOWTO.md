@@ -1,77 +1,83 @@
-RT PREEMPT HOWTO
-================
+如何编译、安装和测试PREEMPT-RT内核
+==================================
 
-## Install
+下载RT补丁和内核
+-------------------------------------------------------------------------------
 
-+ Download
+* [网址](https://www.kernel.org/pub/linux/kernel/projects/rt/)上，寻找目标patch
+	如patch-3.10.58-rt62.patch.xz
+* 下载rt patch对应版本的kernel
+	如：linux-3.10.58.tar.xz
+* 解压并打补丁
+	tar xavf linux-3.10.58.tar.xz
+	cd linux-3.10.58
+	xzcat ../patch-3.10.58-rt62.patch.xz | patch -p1
 
-```
-wget ftp://ftp.kernel.org/pub/linux/kernel/v3.x/linux-3.14.3.tar.xz
-wget https://www.kernel.org/pub/linux/kernel/projects/rt/3.14/patch-3.14.3-rt5.patch.xz
-```
+编译安装新的kernel
+-------------------------------------------------------------------------------
 
-+ Apply patch
+### 内核的配置
 
-```
-tar xavf linux-3.14.3.tar.xz
-cd linux-3.14.4
-xzcat ../patch-3.14.3.rt5.patch.xz | patch -p1
-```
+* 拷贝host上的config到内核源码目录下,命名为.config
+	cp /boot/config-xxx .config
+* yes '' | make oldconfig
+* make menuconfig
 
-+ Configuration and compilation
+NOTE: 如果要编译preempt-rt内核，需要make menuconfig的时候把CONFIG_PREEMPT_RT_FULL和HIGH_RES_TIMERS选项选中。
 
-```
-make menuconfig
-```
+PREEMPT_RT_FULL为例
 
-搜索并配置下面2项开关为开启状态
+> 1）在menuconfig的界面，按'/'键，出现搜索界面，输入“preempt_rt_full”，出现搜索结果，然后按出现的数字序号（这里按1）跳转到相应配置
+> 2）按enter键进入选择列表，选中fully preemptible kernel（不同的内核版本，名称可能不同，应该是列表最后一项）。
 
-```
-HIGH_RES_TIMERS
-PREEMPT_RT_FULL
-```
+### centos上编译安装kernel
 
-然后正常编译安装内核
-
-## run
-
-### check the kernel
-
-+ version
+**方法1**
 
 ```
-uname -a
+make -j4
+make modules -j4
+sudo make modules_install
+sudo make install
 ```
 
-+ process list
+**方法2**
 
 ```
-ps ax #这里可以看到有很多softirq
+# 生成rpm包：
+make rpm-pkg -j4
+# You can found the rpm in ~/rpmbuld/RPMS/
+
+# 安装rpm包：
+rpm -ivh --force ~/rpmbuild/RPMS/kernel-xxx.rpm
+
+# 制作initrd
+# $version 是相应内核的版本， 应当存在/lib/modules/$version这个文件夹
+mkinitrd /boot/initrd-$version.img $version
+
+# 修改grub配置
+sudo vi /etc/grub2.cfg
+# 参考已有的menuentry添加一个新的entry, 修改其中的内核文件和initrd文件为编译和制作出的kernel和initrd
+# $kernel is /boot/vmlinuz-xxx  $initrd is /boot/initrd-xxx.img
+
+# 更新grub启动项
+sudo grub2-mkconfig
+
+# 重启
+sudo reboot # NOW you can use the new kernel
 ```
 
-+ interrupts
+测试实时性能
+-------------------------------------------------------------------------------
+
+**下载和编译工具**
 
 ```
-cat /proc/interrupts #这里可以看到，跟vanilla kernel的输出比，多了一列额外的信息。类似\[........N/  0\].
-
-I (IRQ_INPROGRESS) - IRQ handler active
-D (IRQ_DISABLED) - IRQ disabled
-P (IRQ_PENDING) - IRQ pending
-R (IRQ_REPLAY) - IRQ has been replayed but not acked yet
-A (IRQ_AUTODETECT) - IRQ is being autodetected
-W (IRQ_WAITING) - IRQ not yet seen - for autodetection
-L (IRQ_LEVEL) - IRQ level-triggered
-M (IRQ_MASKED) - IRQ masked - shouldn't be seen again
-N (IRQ_NODELAY) - IRQ must run immediately
+git clone git://git.kernel.org/pub/scm/linux/kernel/git/clrkwllms/rt-tests.git
+cd rt-tests && make （可能报错缺失numa，自行安装）
 ```
 
-### change priority of a Thread
+**测试**
 
-```
-chrt -f -p $PRIO $PID # 修改pid的优先级
-chrt -p $PID # 显示pid的优先级信息
-```
-
-## real-time programming
-
-pass...
+开一个bash，运行sudo ./cyclictest -a -t -n -p99(参数可自行修改，参数含义，自行看help)
+另开一个bash, 运行sudo ./hackbench -g 100 -l 10000. 回到第一个bash可以看到运行cyclictest的运行延迟（延迟越低，实时性越好）。
